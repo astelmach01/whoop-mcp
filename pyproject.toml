@@ -1,0 +1,41 @@
+[project]
+name = "whoop-mcp"
+version = "0.1.0"
+description = "MCP server for the WHOOP Developer API (OAuth 2.0) with a typed async client."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28.0",
+    "mcp>=1.26.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+]
+
+[project.scripts]
+whoop-mcp = "whoop_mcp.server:main"
+whoop-mcp-login = "whoop_mcp.cli:login_sync"
+
+[project.urls]
+Documentation = "https://developer.whoop.com/"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.8.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.10.11,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
